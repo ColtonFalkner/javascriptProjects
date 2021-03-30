@@ -26,6 +26,12 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     )
   },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your pasta with ${ing1}, ${ing2}, ${ing3}`)
+  },
+  orderPizza: function (mainIng, ...otherIng) {
+    console.log(mainIng, otherIng)
+  },
 
   openingHours: {
     thu: {
@@ -42,47 +48,148 @@ const restaurant = {
     },
   },
 }
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Via del Sole, 21',
-  mainIndex: 2,
-  starterIndex: 2,
-})
 
-restaurant.orderDelivery({
-  address: 'Via del Sole, 21',
-  starterIndex: 1,
-})
-//Destructuring Objects
+// //Logical Operators Expanded
+// console.log(3 || 'Colton')
+// console.log('' || 'Colton')
+// console.log(true || 0)
+// console.log(undefined || null)
 
-const { name, openingHours, categories } = restaurant
-console.log(name, openingHours, categories)
+// console.log(undefined || 0 || '' || 'hello' || 23 || null)
 
-//Destructuring and naming own variable
-const {
-  name: restaurantName,
-  openingHours: hours,
-  categories: tags,
-} = restaurant
-console.log(restaurantName, hours, tags)
+// // restaurant.numGuests = 23
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10
+// console.log(guests1)
+// const guests2 = restaurant.numGuests || 10
+// console.log(guests2)
 
-//Destructuring and assigning default values
-const { menu = [], starterMenu: starters = [] } = restaurant
-console.log(menu, starters)
+console.log(0 && 'Colton')
+console.log(7 && 'colton')
+console.log('Hello' && 23 && null && 'Colton')
 
-//Mutating Variables
-let a = 111
-let b = 222
+//Practical Example (avoiding an if statement)
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach')
+}
+//This is nuts. How does this work.
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach')
 
-const obj = { a: 23, b: 8, c: 13 }
-;({ a, b } = obj)
-console.log(a, b)
+// //////////////////////
+// //REST Operator
+// //for the array
+// const [a, b, ...others] = [1, 2, 3, 4, 5]
+// console.log(a, b, others)
 
-//Nested Objects
-const {
-  fri: { open, close },
-} = openingHours
-console.log(open, close)
+// const [pizza, , risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ]
+// console.log(pizza, risotto, otherFood)
+
+// //For Objects
+// const { sat, ...weekdays } = restaurant.openingHours
+// console.log(sat, weekdays)
+
+// //For Functions
+// const add = function (...numbers) {
+//   let sum = 0
+//   for (let i = 0; i < numbers.length; i++) sum += numbers[i]
+//   console.log(sum)
+// }
+// add(2, 3)
+// add(5, 3, 2, 7)
+// add(3, 2, 4, 56, 6, 7, 5)
+
+// const x = [23, 5, 7]
+// add(...x)
+
+// restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach')
+/////////////////////////////////////////////////////////////
+//The Spread Operator (IS on the RIGHT)
+//Real World Example
+// const ingredients = [
+//   prompt("Let's make pasta! Igredient 1?"),
+//   prompt('Ingredient 2?'),
+//   prompt('Ingredient 3?'),
+// ]
+// console.log(ingredients)
+// restaurant.orderPasta(...ingredients)
+
+// restaurant.orderDelivery({
+//   time: '22:30',
+//   address: 'Via del Sole, 21',
+//   mainIndex: 2,
+//   starterIndex: 2,
+// })
+
+// restaurant.orderDelivery({
+//   address: 'Via del Sole, 21',
+//   starterIndex: 1,
+// })
+
+// const arr = [7, 8, 9]
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]]
+// console.log(badNewArr)
+
+// const newArr = [1, 2, ...arr]
+// console.log(newArr)
+
+// console.log(...newArr)
+
+// const newMenu = [...restaurant.mainMenu, 'Gnocchi']
+// console.log(newMenu)
+
+// //copy array
+// const mainMenuCopy = [...restaurant.mainMenu]
+// console.log(mainMenuCopy)
+
+// //Join two or more arrays
+// const joinedArray = [...restaurant.mainMenu, ...restaurant.starterMenu]
+// console.log(joinedArray)
+
+// //Iterables
+// const str = 'Colton'
+// const letters = [...str, '', 'F.']
+// console.log(letters)
+
+// //Spreadable objects
+// const newRestaurant = { foundingYear: 1998, ...restaurant, founder: 'Guiseppe' }
+// console.log(newRestaurant)
+
+// //Soft copy objects
+// const restaurantCopy = { ...restaurant }
+// restaurantCopy.name = 'Ristorante Roma'
+// console.log(restaurantCopy.name, restaurant)
+// //Destructuring Objects
+
+// const { name, openingHours, categories } = restaurant
+// console.log(name, openingHours, categories)
+
+// //Destructuring and naming own variable
+// const {
+//   name: restaurantName,
+//   openingHours: hours,
+//   categories: tags,
+// } = restaurant
+// console.log(restaurantName, hours, tags)
+
+// //Destructuring and assigning default values
+// const { menu = [], starterMenu: starters = [] } = restaurant
+// console.log(menu, starters)
+
+// //Mutating Variables
+// let a = 111
+// let b = 222
+
+// const obj = { a: 23, b: 8, c: 13 }
+// ;({ a, b } = obj)
+// console.log(a, b)
+
+// //Nested Objects
+// const {
+//   fri: { open, close },
+// } = openingHours
+// console.log(open, close)
 
 // //Destructuring arrays
 // const arr = [2, 3, 4]
