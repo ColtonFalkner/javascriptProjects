@@ -57,22 +57,26 @@ const restaurant = {
 
 // console.log(undefined || 0 || '' || 'hello' || 23 || null)
 
-// // restaurant.numGuests = 23
-// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10
-// console.log(guests1)
+restaurant.numGuests = 0
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10
+console.log(guests1)
+//Nullish: null and undefined (not 0 or '')
+const guestCorrect = restaurant.numGuests ?? 10
+console.log(guestCorrect)
+
 // const guests2 = restaurant.numGuests || 10
 // console.log(guests2)
 
-console.log(0 && 'Colton')
-console.log(7 && 'colton')
-console.log('Hello' && 23 && null && 'Colton')
+// console.log(0 && 'Colton')
+// console.log(7 && 'colton')
+// console.log('Hello' && 23 && null && 'Colton')
 
-//Practical Example (avoiding an if statement)
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('mushrooms', 'spinach')
-}
-//This is nuts. How does this work.
-restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach')
+// //Practical Example (avoiding an if statement)
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach')
+// }
+// //This is nuts. How does this work.
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach')
 
 // //////////////////////
 // //REST Operator
