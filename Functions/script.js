@@ -109,7 +109,7 @@ const greet3 = (greeting) => (name) => console.log(`${greeting} ${name}`)
 greet2('Sup')('My Dude')
 greet3('YOOOOOOO')('my Guy')
 */
-
+/*
 const lufthansa = {
   airline: 'Lufthansa',
   iataCode: 'LH',
@@ -208,3 +208,78 @@ console.log(addVAT2(23))
 //     console.log(`${greeting} ${name}`)
 //   }
 // }
+*/
+//Immediately Invoked Function Expressions
+// const runOnce = function () {
+//   console.log('This will never run again')
+// }
+
+// runOnce()
+
+// //IIFE
+// ;(function () {
+//   console.log('this will never run again')
+// })()
+// ;(() => console.log('this will also never run again'))()
+
+// {
+//   const isPrivate = 12
+//   var notPrivate = 23
+// }
+
+// // console.log(isPrivate)
+// console.log(notPrivate)
+
+//Closures
+
+const secureBooking = function () {
+  let passengerCount = 0
+
+  return function () {
+    passengerCount++
+    console.log(`${passengerCount} passengers.`)
+  }
+}
+
+const booker = secureBooking()
+//Has access to the passenger count variable of teh secureBooking function because they were declared in the same scope
+booker()
+booker()
+booker()
+
+console.dir(booker)
+//Example 1
+let f
+
+const g = function () {
+  const a = 23
+  f = function () {
+    console.log(a * 2)
+  }
+}
+
+const h = function () {
+  const b = 999
+  f = function () {
+    console.log(b * 2)
+  }
+}
+
+g()
+f()
+h()
+f()
+
+//Example 2
+const boardPassengers = function (n, waitTime) {
+  const perGroup = n / 3
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers.`)
+    console.log(`There are 3 groups, each with ${perGroup} passengers.`)
+  }, waitTime * 1000)
+
+  console.log(`Will start boarding in ${waitTime} seconds.`)
+}
+
+boardPassengers(180, 3)
