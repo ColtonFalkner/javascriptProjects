@@ -6,6 +6,7 @@ let arr = ['a', 'b', 'c', 'd', 'e']
 arr.slice(2)
 console.log(arr.slice(2))
 console.log(arr.slice(2, 4))
+
 //will always return the last element
 console.log(arr.slice(-1))
 console.log(arr.slice(1, -2))
@@ -48,6 +49,7 @@ movements.forEach(function (movement, index, array) {
   }
 })
 */
+/* For each with maps and sets
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
@@ -65,3 +67,24 @@ console.log(currenciesUnique)
 currenciesUnique.forEach(function (key, value, set) {
   console.log(`${key}: ${value}`)
 })
+*/
+
+//Challenge 1
+
+const dogsJulia = [3, 5, 2, 12, 7]
+const dogsKate = [4, 1, 15, 8, 3]
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const newJuliaDogs = dogsJulia.slice(1, 3)
+  console.log(newJuliaDogs)
+  const fixedArray = newJuliaDogs.concat(dogsKate)
+  console.log(fixedArray)
+  fixedArray.forEach((dog, i) => {
+    if (dog >= 3) {
+      console.log(`Dog #${i + 1} is an adult and is ${dog} years old.`)
+    } else {
+      console.log(`Dog #${i} is a puppy and is ${dog} years old..`)
+    }
+  })
+}
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3])
