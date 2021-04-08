@@ -1,7 +1,7 @@
 'use strict'
 
 let arr = ['a', 'b', 'c', 'd', 'e']
-
+/*
 //SLICE
 arr.slice(2)
 console.log(arr.slice(2))
@@ -46,4 +46,22 @@ movements.forEach(function (movement, index, array) {
   } else {
     console.log(`Movement ${index + 1} - You withdrew ${Math.abs(movement)}`)
   }
+})
+*/
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+])
+
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`)
+})
+
+//With a set
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR'])
+console.log(currenciesUnique)
+//second argument will be the same as the first- set it to '_'(throwaway in javascript) if you want the entire thing
+currenciesUnique.forEach(function (key, value, set) {
+  console.log(`${key}: ${value}`)
 })
