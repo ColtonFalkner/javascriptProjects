@@ -79,9 +79,10 @@ const displayMovements = function (movements) {
   })
 }
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0)
-  labelBalance.textContent = `${balance}€`
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0)
+
+  labelBalance.textContent = `${acc.balance}€`
 }
 
 const calcDisplaySummary = function (acc) {
@@ -116,6 +117,14 @@ const createUsernames = function (accs) {
   })
 }
 
+const updateUI = function (acc) {
+  //Display Movements
+  displayMovements(acc.movements)
+  //Display Balance
+  calcDisplayBalance(acc)
+  //Display Summary
+  calcDisplaySummary(acc)
+}
 createUsernames(accounts)
 
 //Event Handlers
@@ -138,14 +147,34 @@ btnLogin.addEventListener('click', function (e) {
     //Clear input fields
     inputLoginUsername.value = inputLoginPin.value = ''
     inputLoginPin.blur()
-    //Display Movements
-    displayMovements(currentAccount.movements)
-    //Display Balance
-    calcDisplayBalance(currentAccount.movements)
-    //Display Summary
-    calcDisplaySummary(currentAccount)
+    //Update UI function
+    updateUI(currentAccount)
     console.log('Logged in')
   } else {
     console.log('doesnt exist')
+  }
+})
+
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault()
+
+  const amount = Number(inputTransferAmount.value)
+
+  const receiverAccount = accounts.find(
+    (acc) => acc.username === inputTransferTo.value
+  )
+  console.log(amount, receiverAccount)
+  inputTransferAmount.value = inputTransferTo.value = ''
+  if (
+    amount > 0 &&
+    receiverAccount &&
+    currentAccount.balance >= amount &&
+    receiverAccount?.username !== currentAccount.username
+  ) {
+    //handling the transfer
+    currentAccount.movements.push(-amount)
+    receiverAccount.movements.push(amount)
+
+    updateUI(currentAccount)
   }
 })
