@@ -71,20 +71,133 @@ currenciesUnique.forEach(function (key, value, set) {
 
 //Challenge 1
 
-const dogsJulia = [3, 5, 2, 12, 7]
-const dogsKate = [4, 1, 15, 8, 3]
+// const dogsJulia = [3, 5, 2, 12, 7]
+// const dogsKate = [4, 1, 15, 8, 3]
 
-const checkDogs = function (dogsJulia, dogsKate) {
-  const newJuliaDogs = dogsJulia.slice(1, 3)
-  console.log(newJuliaDogs)
-  const fixedArray = newJuliaDogs.concat(dogsKate)
-  console.log(fixedArray)
-  fixedArray.forEach((dog, i) => {
-    if (dog >= 3) {
-      console.log(`Dog #${i + 1} is an adult and is ${dog} years old.`)
-    } else {
-      console.log(`Dog #${i} is a puppy and is ${dog} years old..`)
-    }
-  })
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   const newJuliaDogs = dogsJulia.slice(1, 3)
+//   console.log(newJuliaDogs)
+//   const fixedArray = newJuliaDogs.concat(dogsKate)
+//   console.log(fixedArray)
+//   fixedArray.forEach((dog, i) => {
+//     if (dog >= 3) {
+//       console.log(`Dog #${i + 1} is an adult and is ${dog} years old.`)
+//     } else {
+//       console.log(`Dog #${i} is a puppy and is ${dog} years old.`)
+//     }
+//   })
+// }
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3])
+
+// //Map
+
+// //more in line with functional programming - better for modern javascript
+// const movementsUSD = movements.map((mov) => mov * eurToUsd)
+
+// console.log(movements)
+// console.log(movementsUSD)
+
+// const movementsUSDfor = []
+// for (const mov of movements) movementsUSDfor.push(mov * eurToUsd)
+// console.log(movementsUSDfor)
+
+// const movementDescriptions = movements.map((mov, i, array) => {
+//   if (mov > 0) {
+//     return `Movement ${i + 1} - You deposited ${mov}.`
+//   } else {
+//     return `Movement ${i + 1} - You withdrew ${Math.abs(mov)}`
+//   }
+// })
+
+// console.log(movementDescriptions)
+
+//Filter
+// const deposits = movements.filter(function (mov) {
+//   return mov > 0
+// })
+// console.log(movements)
+// console.log(deposits)
+
+// const withdrawals = movements.filter(function (mov) {
+//   return mov < 0
+// })
+
+// console.log(withdrawals)
+/*
+//Reduce
+console.log(movements)
+
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   return acc + cur
+// }, 0)
+
+const balance = movements.reduce((acc, cur) => acc + cur, 0)
+console.log(balance)
+
+let balance2 = 0
+for (const mov of movements) {
+  balance2 += mov
 }
-checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3])
+console.log(balance2)
+
+//get max value with reduce
+const max = movements.reduce(function (acc, mov) {
+  if (acc > mov) {
+    return acc
+  } else {
+    return mov
+  }
+}, movements[0])
+
+console.log(max)
+*/
+/* Coding Challenge #2
+const dogsJulia = [5, 2, 4, 1, 15, 8, 3]
+const dogsKate = [16, 6, 10, 5, 6, 1, 4]
+
+const calcAverageHumanAge = function (ages) {
+  const humanAges = ages.map((age) => (age <= 2 ? 2 * age : 16 + age * 4))
+  const adults = humanAges.filter((age) => age >= 18)
+  console.log(adults)
+  console.log(humanAges)
+
+  const average = adults.reduce((acc, cur) => acc + cur, 0) / adults.length
+  return average
+}
+const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3])
+const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4])
+
+console.log(avg1)
+console.log(avg2)
+
+*/
+// const eurToUSD = 1.1
+
+// const totalDeposits = movements
+//   .filter((mov) => mov > 0)
+//   .map((mov) => mov * eurToUSD)
+//   .reduce((acc, mov) => acc + mov, 0)
+
+// console.log(totalDeposits)
+
+/* Challenge # 3
+const calcAverageHumanAge = (ages) =>
+ages
+.map((age) => (age <= 2 ? 2 * age : 16 + age * 4))
+.filter((age) => age >= 18)
+.reduce((acc, age, i, arr) => acc + age / arr.length, 0)
+
+const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3])
+
+const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4])
+
+console.log(avg1, avg2)
+*/
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
+
+const firstWithdrawal = movements.find((mov) => mov < 0)
+console.log(firstWithdrawal)
+
+const account = accounts.find((acc) => acc.owner === 'Jessica Davis')
+console.log(account)
