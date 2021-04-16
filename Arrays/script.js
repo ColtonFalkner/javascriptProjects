@@ -243,6 +243,7 @@ console.log(avg1, avg2)
 // movements.sort((a, b) => b - a)
 // console.log(movements)
 
+/* Array.from
 const arr = [1, 2, 3, 4, 5, 6, 7]
 const x = new Array(7)
 console.log(x)
@@ -265,3 +266,54 @@ const diceRolls = Array.from(
   (_, i) => (i = Math.floor(Math.random() * 7))
 )
 console.log(diceRolls)
+*/
+//////////////// Array Methods Practice //////////////////////
+// Data
+const account1 = {
+  owner: 'Jonas Schmedtmann',
+  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+  interestRate: 1.2, // %
+  pin: 1111,
+}
+
+const account2 = {
+  owner: 'Jessica Davis',
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.5,
+  pin: 2222,
+}
+
+const account3 = {
+  owner: 'Steven Thomas Williams',
+  movements: [200, -200, 340, -300, -20, 50, 400, -460],
+  interestRate: 0.7,
+  pin: 3333,
+}
+
+const account4 = {
+  owner: 'Sarah Smith',
+  movements: [430, 1000, 700, 50, 90],
+  interestRate: 1,
+  pin: 4444,
+}
+
+const accounts = [account1, account2, account3, account4]
+
+//1. Calc how much has been deposited into each in total.
+
+const bankDepositSum = accounts
+  .flatMap((acc) => acc.movements)
+  .filter((mov) => mov > 0)
+  .reduce((sum, cur) => sum + cur, 0)
+console.log(bankDepositSum)
+
+//2. how many deposits of at least 1,000
+
+// const numDeposits1000 = accounts
+//   .flatMap((acc) => acc.movements)
+//   .filter((mov) => mov > 1000).length
+
+const numDeposits1000 = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0)
+console.log(numDeposits1000)
