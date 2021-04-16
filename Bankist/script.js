@@ -61,10 +61,12 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount')
 const inputCloseUsername = document.querySelector('.form__input--user')
 const inputClosePin = document.querySelector('.form__input--pin')
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = ''
 
-  movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal'
 
     const html = `
@@ -213,3 +215,35 @@ btnClose.addEventListener('click', function (e) {
   }
   inputCloseUsername.value = inputClosePin.value = ''
 })
+
+let sorted = false
+
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault()
+
+  displayMovements(currentAccount.movements, !sorted)
+
+  sorted = !sorted
+})
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    (el) => Number(el.textContent.replace('€', ''))
+  )
+  console.log(movementsUI)
+})
+
+// //Flat (needed the accounts information or else this would be in that arrays.js file)
+// const overallBalanceBetter = accounts
+//   .map((acc) => acc.movements)
+//   .flat()
+//   .reduce((acc, mov) => acc + mov, 0)
+// console.log(overallBalanceBetter)
+
+// //flatMap
+// const overallBalanceBetter2 = accounts
+//   .flatMap((acc) => acc.movements)
+//   // .flat()
+//   .reduce((acc, mov) => acc + mov, 0)
+// console.log(overallBalanceBetter2)

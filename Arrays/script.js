@@ -1,6 +1,6 @@
 'use strict'
 
-let arr = ['a', 'b', 'c', 'd', 'e']
+// let arr = ['a', 'b', 'c', 'd', 'e']
 /*
 //SLICE
 arr.slice(2)
@@ -198,9 +198,70 @@ console.log(avg1, avg2)
 // const firstWithdrawal = movements.find((mov) => mov < 0)
 // console.log(firstWithdrawal)
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
-console.log(movements)
-console.log(movements.includes(-130))
+//Some & Every
+// console.log(movements)
+// console.log(movements.includes(-130))
 
-const anyDeposits = movements.some((mov) => mov > 1500)
-console.log(anyDeposits)
+// const anyDeposits = movements.some((mov) => mov > 1500)
+// console.log(anyDeposits)
+
+// //flat and flatMap
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8]
+// console.log(arr.flat())
+
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8]
+// console.log(arrDeep.flat())
+// console.log(arrDeep.flat(2))
+
+//Sort
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
+// const owners = ['Jonas', 'Zach', 'Adam', 'Martha']
+// console.log(owners.sort())
+
+//Return < 0, a , b (keep order)
+//Return > 0, b, a (switch order)
+// movements.sort((a, b) => {
+//   //Ascending
+//   if (a > b) {
+//     return 1
+//   }
+//   if (a < b) {
+//     return -1
+//   }
+// })
+// movements.sort((a, b) => a - b)
+// console.log(movements)
+// movements.sort((a, b) => {
+//   //Descending
+//   if (a > b) {
+//     return -1
+//   }
+//   if (a < b) {
+//     return 1
+//   }
+// })
+// movements.sort((a, b) => b - a)
+// console.log(movements)
+
+const arr = [1, 2, 3, 4, 5, 6, 7]
+const x = new Array(7)
+console.log(x)
+// x.map(x.map(() => 5))
+x.fill(1, 3, 5)
+console.log(x)
+
+arr.fill(23, 4, 6)
+console.log(arr)
+
+//Array.from
+const y = Array.from({ length: 7 }, () => 1)
+console.log(y)
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1)
+console.log(z)
+
+const diceRolls = Array.from(
+  { length: 100 },
+  (_, i) => (i = Math.floor(Math.random() * 7))
+)
+console.log(diceRolls)
