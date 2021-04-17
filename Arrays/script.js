@@ -269,51 +269,162 @@ console.log(diceRolls)
 */
 //////////////// Array Methods Practice //////////////////////
 // Data
-const account1 = {
-  owner: 'Jonas Schmedtmann',
-  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
-  interestRate: 1.2, // %
-  pin: 1111,
-}
+// const account1 = {
+//   owner: 'Jonas Schmedtmann',
+//   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+//   interestRate: 1.2, // %
+//   pin: 1111,
+// }
 
-const account2 = {
-  owner: 'Jessica Davis',
-  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
-  interestRate: 1.5,
-  pin: 2222,
-}
+// const account2 = {
+//   owner: 'Jessica Davis',
+//   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+//   interestRate: 1.5,
+//   pin: 2222,
+// }
 
-const account3 = {
-  owner: 'Steven Thomas Williams',
-  movements: [200, -200, 340, -300, -20, 50, 400, -460],
-  interestRate: 0.7,
-  pin: 3333,
-}
+// const account3 = {
+//   owner: 'Steven Thomas Williams',
+//   movements: [200, -200, 340, -300, -20, 50, 400, -460],
+//   interestRate: 0.7,
+//   pin: 3333,
+// }
 
-const account4 = {
-  owner: 'Sarah Smith',
-  movements: [430, 1000, 700, 50, 90],
-  interestRate: 1,
-  pin: 4444,
-}
+// const account4 = {
+//   owner: 'Sarah Smith',
+//   movements: [430, 1000, 700, 50, 90],
+//   interestRate: 1,
+//   pin: 4444,
+// }
 
-const accounts = [account1, account2, account3, account4]
+// const accounts = [account1, account2, account3, account4]
 
-//1. Calc how much has been deposited into each in total.
+// //1. Calc how much has been deposited into each in total.
 
-const bankDepositSum = accounts
-  .flatMap((acc) => acc.movements)
-  .filter((mov) => mov > 0)
-  .reduce((sum, cur) => sum + cur, 0)
-console.log(bankDepositSum)
+// const bankDepositSum = accounts
+//   .flatMap((acc) => acc.movements)
+//   .filter((mov) => mov > 0)
+//   .reduce((sum, cur) => sum + cur, 0)
+// console.log(bankDepositSum)
 
-//2. how many deposits of at least 1,000
+// //2. how many deposits of at least 1,000
+
+// // const numDeposits1000 = accounts
+// //   .flatMap((acc) => acc.movements)
+// //   .filter((mov) => mov > 1000).length
 
 // const numDeposits1000 = accounts
 //   .flatMap((acc) => acc.movements)
-//   .filter((mov) => mov > 1000).length
+//   .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0)
+// console.log(numDeposits1000)
 
-const numDeposits1000 = accounts
-  .flatMap((acc) => acc.movements)
-  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0)
-console.log(numDeposits1000)
+// //3. Create a new object in stead of a number or a string using reduce
+// //reduce is the swiss army knife of array methods
+
+// const { deposits, withdrawals } = accounts
+//   .flatMap((acc) => acc.movements)
+//   .reduce(
+//     (sums, cur) => {
+//       // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur)
+//       sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur
+//       return sums
+//     },
+//     { deposits: 0, withdrawals: 0 }
+//   )
+
+// console.log(deposits, withdrawals)
+
+// //4. Convert any string in to a title case. (All words are capitalized with some exceptions.)
+// // this is a nice title => This Is a Nice Title
+
+// const convertTitleCase = function (title) {
+//   const capitalize = (str) => str[0].toUpperCase() + str.slice(1)
+
+//   const exceptions = ['a', 'an ', 'and', 'the', 'but', 'or', 'on', 'with', 'in']
+
+//   const titleCase = title
+//     .toLowerCase()
+//     .split(' ')
+//     .map((word) => (exceptions.includes(word) ? word : capitalize(word)))
+//     .join(' ')
+//   return capitalize(titleCase)
+// }
+
+// console.log(convertTitleCase('this is a nice title'))
+// console.log(convertTitleCase('this is a LONG title but not too long'))
+// console.log(convertTitleCase('and here is another title with an EXAMPLE'))
+
+//Challenge 4
+//Julia and Kate are still studying dogs, and this time they are studying if the dogs are eating too much or too little.
+//eating too much means taht the dog's current food portion is larger than the recommended portion, and eating too little is the opposite.
+//eating an okay amount means the dog's current food portion is within a range 10% below the recommended portion
+
+//1. Loop over the 'dogs' array containing dog objects, and for each dog, calculate teh recommended food portion and add it to the object as a new property. Do NOT create a newarray, simply loop over the array .
+//Formula: recommendedFood = weight ** 0.75 * 28 (the result is in frams of food and the weight needs to be in kg)
+
+//2. Find sarah's dog and log to the console whether its eating too muhc ot too little. Some dogs have multiple owners , so you need to find sarahs first in the array.
+
+//3. Create an array containing all owners of dogs who eat too much ('ownersEatTooMuch') and an array of owners of dogs that eat too little ('ownersEatTooLittle')
+
+//4. Log a string to the console for each arrat created in 3. "matilda and alice and bobs dogs eat to much" and "Sarah and John and Michael's dogs eat too little"
+
+//5. Log to the console whether there is any dog eating exactly the amount of food that is recommended (boolean value)
+
+//6. Log to the console whether there is any dog eating an okay amount of food (boolean)
+
+//7. Create an array containing the dogs that are eating na okay amount of food (reuse condition in 6)
+
+//8. Create a shallow copy of the 'dogs' array and sort it by recommended food portion in an ascending order (keep in mind that the portions are insdie the array's objects.)
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+]
+
+//1.
+dogs.forEach((dog) => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)))
+console.log(dogs)
+
+//2.
+const dogSarah = dogs.find((dog) => dog.owners.includes('Sarah'))
+console.log(dogSarah)
+console.log(
+  `Sarah's dog is eating too ${
+    dogSarah.curFood > dogSarah.recFood ? 'much' : 'little'
+  }`
+)
+
+//3.
+const ownersEatTooMuch = dogs
+  .filter((dog) => dog.curFood > dog.recFood)
+  .flatMap((dog) => dog.owners)
+
+console.log(ownersEatTooMuch)
+
+const ownersEatTooLittle = dogs
+  .filter((dog) => dog.curFood < dog.recFood)
+  .flatMap((dog) => dog.owners)
+
+console.log(ownersEatTooLittle)
+
+//4.
+console.log(`${ownersEatTooMuch.join(' and ')}'s dog eat too much.`)
+console.log(`${ownersEatTooLittle.join(' and ')}'s dog eat too little.`)
+
+//5.
+console.log(dogs.some((dog) => dog.curFood === dog.recFood))
+
+//6.
+const checkEatingOkay = (dog) =>
+  dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1
+
+console.log(dogs.some(checkEatingOkay))
+
+//7.
+console.log(dogs.filter(checkEatingOkay))
+
+//8.
+const dogsSorted = dogs.slice().sort((a, b) => a.recFood - b.recFood)
+console.log(dogsSorted)
