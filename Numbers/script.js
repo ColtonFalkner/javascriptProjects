@@ -88,16 +88,81 @@ console.log(Number.MAX_SAFE_INTEGER)
 console.log(2340958723045987230459872309587235987n)
 console.log(BigInt(2340958723045987230459872309587235987))
 */
-
+/*
 //Dates
-const now = new Date()
-console.log(now)
+// const now = new Date()
+// console.log(now)
 
-console.log(new Date('Mon Apr 19 2021 15:33:50'))
+// console.log(new Date('Mon Apr 19 2021 15:33:50'))
 
-console.log(new Date('December 24, 2015'))
-console.log(new Date('2019-11-18T21:31:17.178Z'))
+// console.log(new Date('December 24, 2015'))
+// console.log(new Date('2019-11-18T21:31:17.178Z'))
 
-console.log(new Date(2037, 10, 19, 15, 23, 5))
-console.log(new Date(0))
-console.log(new Date(3 * 24 * 60 * 60 * 1000))
+// console.log(new Date(2037, 10, 19, 15, 23, 5))
+// console.log(new Date(0))
+// console.log(new Date(3 * 24 * 60 * 60 * 1000))
+
+const future = new Date(2037, 10, 19, 15, 23)
+console.log(future)
+console.log(future.getFullYear())
+//Dont Use
+// console.log(future.getYear())
+console.log(future.getDate())
+console.log(future.getMonth())
+console.log(future.getDay())
+console.log(future.getHours())
+console.log(future.getMinutes())
+console.log(future.getSeconds())
+console.log(future.toISOString())
+console.log(future.getTime())
+//Retuns timestamp for current moment
+console.log(Date.now())
+
+future.setFullYear(2040)
+console.log(future)
+*/
+//Calculations with Dates
+// const future = new Date(2037, 10, 19, 15, 23)
+// console.log(+future)
+
+// const calcDaysPast = (date1, date2) =>
+//   Math.abs(date2 - date1) / (1000 * 60 * 60 * 24)
+
+// const days1 = calcDaysPast(new Date(2037, 3, 14), new Date(2037, 3, 24))
+// console.log(days1)
+/*
+const num = 3884764.23
+const options = {
+  style: 'currency',
+  unit: 'percent',
+  currency: 'EUR',
+  useGrouping: true,
+}
+//US
+console.log(new Intl.NumberFormat('en-US', options).format(num))
+//Germany
+console.log(new Intl.NumberFormat('de-DE', options).format(num))
+//Syria
+console.log(new Intl.NumberFormat('ar-SY', options).format(num))
+//Local Browser
+console.log(new Intl.NumberFormat(navigator.language, options).format(num))
+*/
+/*
+//Set Timeout
+
+const ingredients = ['olive', 'spinach']
+const pizzaTimer = setTimeout(
+  (ing1, ing2) =>
+    console.log(`Here is your pizza with ${ing1} and ${ing2}. 🍕`),
+  3000,
+  ...ingredients
+)
+console.log('Waiting...')
+
+if (ingredients.includes('spinach')) clearTimeout(pizzaTimer)
+*/
+// //SetInterval
+// setInterval(() => {
+//   const now = new Date()
+//   console.log(now)
+// }, 1000)
