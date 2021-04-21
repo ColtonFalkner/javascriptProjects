@@ -201,28 +201,34 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc)
 }
 const startLogoutTimer = function () {
-  //Set time to five minutes
-  let time = 100
-  //Call the timer every second
-  setInterval(function () {
+  const tick = function () {
     const min = String(Math.trunc(time / 60)).padStart(2, 0)
     const sec = String(time % 60).padStart(2, 0)
     //in each call, print the remaining time to the UI
     labelTimer.textContent = `${min}:${sec}`
-    //decrease time
-    time--
+
     //When it runs out, log the user out.
     if (time === 0) {
+      clearInterval(timer)
       containerApp.style.opacity = 0
     }
-  }, 1000)
+    //decrease time
+    time--
+  }
+  //Set time to five minutes
+
+  let time = 120
+  //Call the timer every second
+  tick()
+  const timer = setInterval(tick, 1000)
+  return timer
 }
 //Event Handlers
-let currentAccount
+let currentAccount, timer
 //Fake login
-currentAccount = account1
-updateUI(currentAccount)
-containerApp.style.opacity = 100
+// currentAccount = account1
+// updateUI(currentAccount)
+// containerApp.style.opacity = 100
 //API Experiment
 
 btnLogin.addEventListener('click', function (e) {
@@ -231,7 +237,7 @@ btnLogin.addEventListener('click', function (e) {
   currentAccount = accounts.find(
     (acc) => acc.username === inputLoginUsername.value
   )
-  console.log(currentAccount)
+  // console.log(currentAccount)
 
   if (currentAccount?.pin === +inputLoginPin.value) {
     //Display UI and Welcome Message
@@ -264,8 +270,8 @@ btnLogin.addEventListener('click', function (e) {
     //Clear input fields
     inputLoginUsername.value = inputLoginPin.value = ''
     inputLoginPin.blur()
-
-    startLogoutTimer()
+    if (timer) clearInterval(timer)
+    timer = startLogoutTimer()
     //Update UI function
     updateUI(currentAccount)
   }
@@ -296,6 +302,10 @@ btnTransfer.addEventListener('click', function (e) {
     receiverAccount.movementsDates.push(new Date().toISOString())
 
     updateUI(currentAccount)
+
+    //Reset Timer
+    clearInterval(timer)
+    timer = startLogoutTimer()
   }
 })
 
@@ -315,6 +325,9 @@ btnLoan.addEventListener('click', function (e) {
       }
     }, 2500)
   inputLoanAmount.value = ''
+
+  clearInterval(timer)
+  timer = startLogoutTimer()
 })
 
 btnClose.addEventListener('click', function (e) {
