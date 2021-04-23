@@ -5,6 +5,10 @@ const modal = document.querySelector('.modal')
 const overlay = document.querySelector('.overlay')
 const btnCloseModal = document.querySelector('.btn--close-modal')
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal')
+//Scroll
+const btnScrollTo = document.querySelector('.btn--scroll-to')
+const section1 = document.querySelector('#section--1')
+//Page nav
 
 const openModal = function (e) {
   e.preventDefault()
@@ -28,9 +32,6 @@ document.addEventListener('keydown', function (e) {
   }
 })
 
-const btnScrollTo = document.querySelector('.btn--scroll-to')
-const section1 = document.querySelector('#section--1')
-
 btnScrollTo.addEventListener('click', function (e) {
   const s1coords = section1.getBoundingClientRect()
 
@@ -44,6 +45,28 @@ btnScrollTo.addEventListener('click', function (e) {
     document.documentElement.clientWidth
   )
   section1.scrollIntoView({ behavior: 'smooth' })
+})
+
+//Page Nav
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault()
+
+//     const id = this.getAttribute('href')
+//     console.log(id)
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' })
+//   })
+// })
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  console.log(e.target)
+  e.preventDefault()
+
+  //matching strat
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href')
+    console.log(id)
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' })
+  }
 })
 
 /////////////////////////////////////////////////////////////////////
