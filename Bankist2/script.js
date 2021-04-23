@@ -27,9 +27,28 @@ document.addEventListener('keydown', function (e) {
     closeModal()
   }
 })
-///////////////////////
-///////////////////////
-///////////////////////
+
+const btnScrollTo = document.querySelector('.btn--scroll-to')
+const section1 = document.querySelector('#section--1')
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect()
+
+  console.log(e.target.getBoundingClientRect())
+
+  console.log('Current Scroll (X/Y)', window.pageXOffset, window.pageYOffset)
+
+  console.log(
+    'height/width',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  )
+  section1.scrollIntoView({ behavior: 'smooth' })
+})
+
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
 /*
 console.log(document.documentElement)
 console.log(document.head)
@@ -95,35 +114,16 @@ console.log(link.getAttribute('href'))
 console.log(logo.dataset.versionNumber)
 */
 
-const btnScrollTo = document.querySelector('.btn--scroll-to')
-const section1 = document.querySelector('#section--1')
+// window.scrollTo(
+//   s1coords.left + window.pageXOffset,
+//   s1coords.top + window.pageYoffset
+// )
 
-btnScrollTo.addEventListener('click', function (e) {
-  const s1coords = section1.getBoundingClientRect()
-
-  console.log(e.target.getBoundingClientRect())
-
-  console.log('Current Scroll (X/Y)', window.pageXOffset, window.pageYOffset)
-
-  console.log(
-    'height/width',
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  )
-
-  // window.scrollTo(
-  //   s1coords.left + window.pageXOffset,
-  //   s1coords.top + window.pageYoffset
-  // )
-
-  // window.scrollTo({
-  //   left: s1coords.left + pageXOffset,
-  //   top: s1coords.top + window.pageYOffset,
-  //   behavior: 'smooth',
-  // })
-
-  section1.scrollIntoView({ behavior: 'smooth' })
-})
+// window.scrollTo({
+//   left: s1coords.left + pageXOffset,
+//   top: s1coords.top + window.pageYOffset,
+//   behavior: 'smooth',
+// })
 
 // const h1 = document.querySelector('h1')
 // const alertH1 = function (e) {
@@ -144,12 +144,12 @@ btnScrollTo.addEventListener('click', function (e) {
 //   alert('addEventListener: FUCK')
 // }
 
-// rgb(255,255,255)
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min)
-const randomColor = () =>
-  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`
-console.log(randomColor())
+// // rgb(255,255,255)
+// const randomInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1) + min)
+// const randomColor = () =>
+//   `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`
+// console.log(randomColor())
 
 // document.querySelector('.nav__link').addEventListener('click', function (e) {
 //   this.style.backgroundColor = randomColor()
