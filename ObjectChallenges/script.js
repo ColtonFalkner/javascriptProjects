@@ -8,19 +8,19 @@
 
 //4. Create 2 'Car' objects and experimenting with calling the accelerate and brake multiple times on each one.
 
-// const Car = function (make, speed) {
-//   ;(this.make = make), (this.speed = speed)
-// }
+const Car = function (make, speed) {
+  ;(this.make = make), (this.speed = speed)
+}
 
-// Car.prototype.accelerate = function () {
-//   this.speed += 10
-//   console.log(`${this.make} is going at ${this.speed} km/h`)
-// }
+Car.prototype.accelerate = function () {
+  this.speed += 10
+  console.log(`${this.make} is going at ${this.speed} km/h`)
+}
 
-// Car.prototype.brake = function () {
-//   this.speed -= 5
-//   console.log(`${this.make} is going at ${this.speed} km/h`)
-// }
+Car.prototype.brake = function () {
+  this.speed -= 5
+  console.log(`${this.make} is going at ${this.speed} km/h`)
+}
 
 // const car1 = new Car('BMW', 120)
 // const car2 = new Car('Mercedes', 95)
@@ -74,10 +74,52 @@ class CarCl {
   }
 }
 
-const car1 = new CarCl('Ford', 120)
-console.log(car1)
-console.log(car1.speedUS)
-car1.accelerate()
-car1.brake()
-car1.speedUS = 50
-console.log(car1)
+// const car1 = new CarCl('Ford', 120)
+// console.log(car1)
+// console.log(car1.speedUS)
+// car1.accelerate()
+// car1.brake()
+// car1.speedUS = 50
+// console.log(car1)
+
+//Challenge 3
+
+//1. USe a constructor function and implement an Electric Car (called 'EV') as a child class of 'Car'. Besides a make and current speed, the 'EV' also has the current battery charge in % ('charge' property).
+
+//2. Implement a chargeBattery method which takes an argument 'chargeTo' and sets the battery charge to 'chargeTo'
+
+//3. IMplement an 'accelerate' method that will increase the car's speed by 20 and decrease the charge by 1%. then log a message like this 'Tesla is going at 140 km/h, with a charge of 22%
+
+//4. Create an electric car object and experiment with calling 'accerlerate' 'brake' and 'chargeBattery' (charge to 90%.) Notice what happens when you 'accerlerate'
+
+const EV = function (make, speed, charge) {
+  Car.call(this, make, speed)
+  this.charge = charge
+}
+
+EV.prototype = Object.create(Car.prototype)
+
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo
+}
+
+EV.prototype.accelerate = function () {
+  this.speed += 20
+  this.charge--
+  console.log(
+    `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}%.`
+  )
+}
+
+const tesla = new EV('Tesla', 120, 23)
+console.log(tesla)
+tesla.accelerate()
+tesla.accelerate()
+tesla.accelerate()
+tesla.chargeBattery(90)
+console.log(tesla)
+tesla.accelerate()
+tesla.brake()
+tesla.brake()
+tesla.brake()
+tesla.brake()
