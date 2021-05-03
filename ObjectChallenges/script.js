@@ -63,6 +63,7 @@ class CarCl {
   brake() {
     this.speed -= 5
     console.log(`${this.make} is going at ${this.speed} km/h`)
+    return this
   }
 
   get speedUS() {
@@ -92,34 +93,76 @@ class CarCl {
 
 //4. Create an electric car object and experiment with calling 'accerlerate' 'brake' and 'chargeBattery' (charge to 90%.) Notice what happens when you 'accerlerate'
 
-const EV = function (make, speed, charge) {
-  Car.call(this, make, speed)
-  this.charge = charge
+// const EV = function (make, speed, charge) {
+//   Car.call(this, make, speed)
+//   this.charge = charge
+// }
+
+// EV.prototype = Object.create(Car.prototype)
+
+// EV.prototype.chargeBattery = function (chargeTo) {
+//   this.charge = chargeTo
+// }
+
+// EV.prototype.accelerate = function () {
+//   this.speed += 20
+//   this.charge--
+//   console.log(
+//     `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}%.`
+//   )
+// }
+
+// const tesla = new EV('Tesla', 120, 23)
+// console.log(tesla)
+// tesla.accelerate()
+// tesla.accelerate()
+// tesla.accelerate()
+// tesla.chargeBattery(90)
+// console.log(tesla)
+// tesla.accelerate()
+// tesla.brake()
+// tesla.brake()
+// tesla.brake()
+// tesla.brake()
+
+//Challenge 4
+//1. Re-create challenge #3, but this time using ES6 classes: create an "EVCL" child class fo the CarCL class
+
+//2. Make the charge property private
+
+//3. Implement the ability to chain the 'accelerate' and 'chargeBattery' methods of this class, and also update the 'brake' method in the 'CarCl' class.
+
+class EVCl extends CarCl {
+  #charge
+
+  constructor(make, speed, charge) {
+    super(make, speed)
+    this.#charge = charge
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo
+    return this
+  }
+
+  accelerate() {
+    this.speed += 20
+    this.#charge--
+    console.log(
+      `${this.make} is going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }%.`
+    )
+    return this
+  }
 }
 
-EV.prototype = Object.create(Car.prototype)
-
-EV.prototype.chargeBattery = function (chargeTo) {
-  this.charge = chargeTo
-}
-
-EV.prototype.accelerate = function () {
-  this.speed += 20
-  this.charge--
-  console.log(
-    `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}%.`
-  )
-}
-
-const tesla = new EV('Tesla', 120, 23)
-console.log(tesla)
-tesla.accelerate()
-tesla.accelerate()
-tesla.accelerate()
-tesla.chargeBattery(90)
-console.log(tesla)
-tesla.accelerate()
-tesla.brake()
-tesla.brake()
-tesla.brake()
-tesla.brake()
+const rivian = new EVCl('Rivian', 120, 23)
+console.log(rivian)
+rivian
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .brake()
+  .chargeBattery(50)
+  .accelerate()
