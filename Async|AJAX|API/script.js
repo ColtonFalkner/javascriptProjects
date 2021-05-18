@@ -95,7 +95,7 @@ const renderError = function (msg) {
 // }
 // getCountryAndNeighbor('usa')
 
-const request = fetch('https:restcountries.eu/rest/v2/name/portugal')
+// const request = fetch('https:restcountries.eu/rest/v2/name/portugal')
 // console.log(request)
 
 // const getCountryData = function (country) {
@@ -174,7 +174,7 @@ const getCountryData = function (country) {
 }
 
 btn.addEventListener('click', function () {
-  getCountryData('australia')
+  getCountryData()
 })
 
 // getCountryData('usa')
