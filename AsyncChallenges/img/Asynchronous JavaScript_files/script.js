@@ -263,7 +263,7 @@ const getPosition = function () {
   })
 }
 
-const whereAmI = async function () {
+const whereAmI = (async function () {
   try {
     const pos = await getPosition()
     const { latitude: lat, longitude: lng } = pos.coords
@@ -284,72 +284,39 @@ const whereAmI = async function () {
     console.error(err)
     renderError(`Something Went Wrong`)
   }
-}
-// btn.addEventListener('click', whereAmI)
-// const city = whereAmI()
-// console.log(city)
+})(
+  // btn.addEventListener('click', whereAmI)
+  // const city = whereAmI()
+  // console.log(city)
 
-// whereAmI()
-//   .then((res) => console.log(res))
-//   .catch((err) => console.error(`${err.message}`))
-//   .finally(() => console.log('3: Finished Getting Location'))
+  // whereAmI()
+  //   .then((res) => console.log(res))
+  //   .catch((err) => console.error(`${err.message}`))
+  //   .finally(() => console.log('3: Finished Getting Location'))
 
-//////////////////Promise.all
+  // const get3Countries = async function (c1, c2, c3) {
+  //   try {
+  //     //   const [data1] = await getJSON(`https://restcountries.eu/rest/v2/name/${c1}`)
+  //     //   const [data2] = await getJSON(`https://restcountries.eu/rest/v2/name/${c2}`)
+  //     //   const [data3] = await getJSON(`https://restcountries.eu/rest/v2/name/${c3}`)
 
-// const get3Countries = async function (c1, c2, c3) {
-//   try {
-//     //   const [data1] = await getJSON(`https://restcountries.eu/rest/v2/name/${c1}`)
-//     //   const [data2] = await getJSON(`https://restcountries.eu/rest/v2/name/${c2}`)
-//     //   const [data3] = await getJSON(`https://restcountries.eu/rest/v2/name/${c3}`)
+  //     const data = await Promise.all([
+  //       getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
+  //       getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
+  //       getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
+  //     ])
+  //     console.log(data.map((d) => d[0].capital))
+  //   } catch (err) {
+  //     console.error(err.message)
+  //   }
+  // }
+  // get3Countries('portugal', 'canada', 'usa')
 
-//     const data = await Promise.all([
-//       getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
-//       getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
-//       getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
-//     ])
-//     console.log(data.map((d) => d[0].capital))
-//   } catch (err) {
-//     console.error(err.message)
-//   }
-// }
-// get3Countries('portugal', 'canada', 'usa')
-
-///////////Promise.race()
-// const race = async function () {
-//   const res = await Promise.race([
-//     getJSON(`https://restcountries.eu/rest/v2/name/italy`),
-//     getJSON(`https://restcountries.eu/rest/v2/name/egypt`),
-//     getJSON(`https://restcountries.eu/rest/v2/name/mexico`),
-//   ])
-//   console.log(res[0])
-// }
-// // race()
-
-// const timeout = function (sec) {
-//   return new Promise(function (_, reject) {
-//     setTimeout(function () {
-//       reject(new Error('Request took too long!'))
-//     }, sec * 1000)
-//   })
-// }
-
-// Promise.race([
-//   getJSON(`https://restcountries.eu/rest/v2/name/tanzania`),
-//   timeout(1),
-// ])
-//   .then((res) => console.log(res))
-//   .catch((err) => console.error(err))
-
-//Promise.allSettled
-
-Promise.allSettled([
-  Promise.resolve('Success'),
-  Promise.reject('error'),
-  Promise.resolve('Another Success'),
-]).then((res) => console.log(res))
-
-Promise.any([
-  Promise.resolve('Success'),
-  Promise.reject('error'),
-  Promise.resolve('Another Success'),
-]).then((res) => console.log(res))
+  async function () {
+    const res = await Promise.race([
+      getJSON(`https://restcountries.eu/rest/v2/name/italy`),
+      getJSON(`https://restcountries.eu/rest/v2/name/egypt`),
+      getJSON(`https://restcountries.eu/rest/v2/name/mexico`),
+    ])
+  }
+)()
